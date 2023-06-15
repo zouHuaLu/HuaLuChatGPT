@@ -26,6 +26,8 @@ import { useAppConfig } from "../store/config";
 import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 
+import Login from "./login";
+
 export function Loading(props: { noLogo?: boolean }) {
   return (
     <div className={styles["loading-content"] + " no-dark"}>
@@ -159,6 +161,10 @@ export function Home() {
 
   if (!useHasHydrated()) {
     return <Loading />;
+  }
+
+  if (!localStorage.getItem("loginStatus")) {
+    return <Login />;
   }
 
   return (
